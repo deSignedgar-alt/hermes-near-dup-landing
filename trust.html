@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trust &amp; deployment guarantees — Hermes Fleur</title>
+  <meta name="description" content="Air-gap posture, zero product telemetry, local volume control, and soft-lock license behavior for Hermes Fleur On-Prem Near-Dup Gateway." />
+  <meta name="theme-color" content="#0a0c0f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: { 950: '#07080a', 900: '#0a0c0f', 800: '#12151a', 700: '#1a1f27', 600: '#252b35' },
+            ash: { 400: '#8b939e', 300: '#b4bac3', 200: '#d6dae0' },
+            brass: { 500: '#c4a574', 400: '#d4bc91', 600: '#a8895a' },
+            signal: { ok: '#6f9f7a', warn: '#c9a227', bad: '#b85c5c' }
+          },
+          fontFamily: {
+            display: ['Syne', 'system-ui', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'ui-monospace', 'monospace']
+          },
+          boxShadow: {
+            panel: '0 0 0 1px rgba(196,165,116,0.12), 0 24px 80px rgba(0,0,0,0.45)'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      background-color: #0a0c0f;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196,165,116,0.08), transparent 55%),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+    }
+  </style>
+</head>
+<body class="text-ash-200 font-mono antialiased selection:bg-brass-500/30 selection:text-ash-200">
+  <div class="min-h-screen">
+    <header class="border-b border-white/5">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 sm:px-8">
+        <a href="index.html" class="font-display text-sm font-semibold tracking-[0.18em] text-ash-200 uppercase">
+          Hermes<span class="text-brass-500">Fleur</span>
+        </a>
+        <nav class="flex gap-5 text-[11px] uppercase tracking-[0.16em] text-ash-400">
+          <a class="text-brass-400" href="trust.html">Trust</a>
+          <a class="hover:text-brass-400 transition-colors" href="poc-agreement.html">PoC terms</a>
+          <a class="hover:text-brass-400 transition-colors" href="index.html#poc">Request trial</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
+      <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">Trust layer · IT / CISO</p>
+      <h1 class="mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight text-ash-200 sm:text-5xl">
+        Deployment guarantees
+      </h1>
+      <p class="mt-5 max-w-2xl text-sm leading-relaxed text-ash-400">
+        Short facts for security review of the On-Prem L2 Near-Dup Gateway
+        (<code class="text-brass-400">v2.1-near-dup</code>). Advisory scores only — not a fraud oracle, not Face Soft, not auto-deny.
+      </p>
+
+      <div class="mt-12 grid gap-4 sm:grid-cols-2">
+        <article class="border border-white/10 bg-ink-800/60 p-5 shadow-panel sm:p-6">
+          <h2 class="font-display text-lg font-semibold text-ash-200">Air-gap posture</h2>
+          <ul class="mt-4 space-y-2 text-sm text-ash-400">
+            <li>Product gateway listens on the customer host (default loopback / private network).</li>
+            <li>No required SaaS hop for enroll / match / session.</li>
+            <li>Designed so media and scores stay on infrastructure you control.</li>
+          </ul>
+        </article>
+        <article class="border border-white/10 bg-ink-800/60 p-5 shadow-panel sm:p-6">
+          <h2 class="font-display text-lg font-semibold text-ash-200">Zero product telemetry</h2>
+          <ul class="mt-4 space-y-2 text-sm text-ash-400">
+            <li>No phone-home of images, scores, or license counters to the vendor.</li>
+            <li>Evaluation pack does not embed cloud analytics SDKs.</li>
+            <li>Outbound access is a customer network policy choice — not a product dependency.</li>
+          </ul>
+        </article>
+        <article class="border border-white/10 bg-ink-800/60 p-5 shadow-panel sm:p-6">
+          <h2 class="font-display text-lg font-semibold text-ash-200">Local volume control</h2>
+          <ul class="mt-4 space-y-2 text-sm text-ash-400">
+            <li>Quota / license state lives under <code class="text-brass-400">/data</code> inside the container.</li>
+            <li>Mount <code class="text-brass-400">/data</code> as a Docker <strong class="text-ash-200">named volume</strong> (e.g. <code class="text-brass-400">hermes-v21-poc-data</code>).</li>
+            <li>Do <strong class="text-ash-200">not</strong> bind-mount a host file onto <code class="text-brass-400">license_state.json</code> — flock behavior on file binds is unreliable.</li>
+            <li>You retain the volume; wiping the container does not require shipping media back to the vendor.</li>
+          </ul>
+        </article>
+        <article class="border border-white/10 bg-ink-800/60 p-5 shadow-panel sm:p-6">
+          <h2 class="font-display text-lg font-semibold text-ash-200">License soft-lock</h2>
+          <ul class="mt-4 space-y-2 text-sm text-ash-400">
+            <li>Ed25519-signed trial license + HMAC-protected quota state.</li>
+            <li>Exhausted quota → HTTP <code class="text-brass-400">402</code>, <code class="text-brass-400">wipe: false</code> (soft-lock only).</li>
+            <li>No product wipe of customer media or vault enrollments on expiry / exhaustion.</li>
+            <li>Default closed trial: <strong class="text-ash-200">10 matches / 14 days</strong> (whichever binds first per signed license).</li>
+          </ul>
+        </article>
+      </div>
+
+      <section class="mt-12 border border-white/10 bg-ink-950/80 p-5 sm:p-8">
+        <h2 class="font-display text-xl font-semibold text-ash-200">What we do not claim</h2>
+        <ul class="mt-4 grid gap-2 text-sm text-ash-400 sm:grid-cols-2">
+          <li>No biometrics / Face Soft</li>
+          <li>No open-web reverse image search</li>
+          <li>No auto payout deny / auto takedown</li>
+          <li>No sold claim for arbitrary crop / rotation / affine</li>
+        </ul>
+        <p class="mt-6 text-sm text-ash-400">
+          For a closed evaluation, use the
+          <a class="text-brass-400 hover:text-brass-300" href="poc-agreement.html">lightweight PoC agreement</a>
+          so legal can clear a 14-day / 10-match trial without a full MSA.
+        </p>
+      </section>
+
+      <p class="mt-10 text-[11px] text-ash-400">
+        Contact:
+        <span class="text-ash-200">Igor Haritonof</span>
+        ·
+        <a class="text-brass-400 hover:text-brass-300" href="mailto:dezignedgar@gmail.com">dezignedgar@gmail.com</a>
+      </p>
+    </main>
+
+    <footer class="border-t border-white/5">
+      <div class="mx-auto flex max-w-5xl flex-col gap-2 px-5 py-8 text-[10px] uppercase tracking-[0.14em] text-ash-400 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <a class="hover:text-brass-400" href="index.html">← Product page</a>
+        <span>Air-gap · Soft-lock · Advisory</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
