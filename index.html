@@ -82,8 +82,8 @@
           <a class="hover:text-brass-400 transition-colors" href="#stack">Stack</a>
           <a class="hover:text-brass-400 transition-colors" href="#security">Security</a>
           <a class="hover:text-brass-400 transition-colors" href="#api">API</a>
+          <a class="hover:text-brass-400 transition-colors" href="#trust">Trust</a>
           <a class="hover:text-brass-400 transition-colors" href="#poc">PoC</a>
-          <a class="hover:text-brass-400 transition-colors" href="trust.html">Trust</a>
         </nav>
         <a href="#poc" class="border border-brass-500/40 bg-brass-500/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-brass-400 hover:bg-brass-500/20 transition-colors">
           Request trial
@@ -239,38 +239,49 @@
         </div>
       </section>
 
+      <!-- TRUST + PoC TERMS (additive) -->
+      <section id="trust" class="relative border-t border-white/5">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">04 · Trust &amp; legal</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Trust + PoC terms</h2>
+          <p class="mt-3 max-w-2xl text-sm text-ash-400">
+            Short pages for IT and counsel: air-gap / no telemetry / local volumes, plus a lightweight
+            10-match / 14-day evaluation agreement (Print → PDF). Does not replace a production MSA.
+          </p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <a href="trust.html" class="block border border-white/10 bg-ink-800/50 p-5 transition-colors hover:border-brass-500/40">
+              <h3 class="font-display text-lg font-semibold text-ash-200">Trust layer</h3>
+              <p class="mt-2 text-sm text-ash-400">Deployment guarantees for CISO / IT review.</p>
+            </a>
+            <a href="poc-agreement.html" class="block border border-white/10 bg-ink-800/50 p-5 transition-colors hover:border-brass-500/40">
+              <h3 class="font-display text-lg font-semibold text-ash-200">PoC terms</h3>
+              <p class="mt-2 text-sm text-ash-400">Closed evaluation agreement template (10 matches / 14 days).</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- CTA -->
       <section id="poc" class="relative">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
           <div class="border border-brass-500/25 bg-gradient-to-br from-ink-800 to-ink-950 p-6 shadow-panel sm:p-10">
-            <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">04 · Closed trial</p>
+            <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">05 · Closed trial</p>
             <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Request a 10-match PoC</h2>
             <p class="mt-3 max-w-xl text-sm text-ash-400">
               Blind Docker pack: image tar + signed trial license (<strong class="font-medium text-ash-300">10 matches / 14 days</strong>) + client.
               For security / IT evaluation only. No source, no signing secret.
             </p>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a id="poc-mail"
                  href="mailto:dezignedgar@gmail.com?subject=Hermes%20Fleur%20PoC%2010-match%20trial&body=Company%3A%0ARole%3A%0AUse-case%20(claims%20%2F%20marketplace)%3A%0APreferred%20region%20(US%2FEU)%3A%0A"
                  class="inline-flex items-center justify-center border border-brass-500 bg-brass-500 px-5 py-3 text-center text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-950 hover:bg-brass-400 transition-colors">
                 Email Igor Haritonof — closed PoC
               </a>
-              <a href="poc-agreement.html"
+              <a href="https://github.com/deSignedgar-alt/edem-network-mesh"
                  class="inline-flex items-center justify-center border border-white/15 px-5 py-3 text-[12px] uppercase tracking-[0.14em] text-ash-300 hover:border-brass-500/40 hover:text-brass-400 transition-colors">
-                PoC terms
-              </a>
-              <a href="trust.html"
-                 class="inline-flex items-center justify-center border border-white/15 px-5 py-3 text-[12px] uppercase tracking-[0.14em] text-ash-300 hover:border-brass-500/40 hover:text-brass-400 transition-colors">
-                Trust layer
+                Engineering repo
               </a>
             </div>
-            <p class="mt-4 text-[11px] text-ash-400">
-              For IT / legal review:
-              <a class="text-brass-400 hover:text-brass-300" href="trust.html">deployment guarantees</a>
-              ·
-              <a class="text-brass-400 hover:text-brass-300" href="poc-agreement.html">10-match / 14-day PoC agreement</a>
-              (Print → PDF).
-            </p>
             <p class="mt-6 font-mono text-[11px] text-ash-400">
               Contact:
               <span class="text-ash-200">Igor Haritonof</span>
@@ -288,11 +299,7 @@
     <footer class="border-t border-white/5">
       <div class="mx-auto flex max-w-5xl flex-col gap-2 px-5 py-8 text-[10px] uppercase tracking-[0.14em] text-ash-400 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <span>Hermes Fleur · On-Prem L2 Near-Dup Gateway</span>
-        <span class="flex flex-wrap gap-3">
-          <a class="hover:text-brass-400" href="trust.html">Trust</a>
-          <a class="hover:text-brass-400" href="poc-agreement.html">PoC terms</a>
-          <span>Air-gap · Soft-lock · Advisory</span>
-        </span>
+        <span>Air-gap · Soft-lock · Advisory</span>
       </div>
     </footer>
   </div>
