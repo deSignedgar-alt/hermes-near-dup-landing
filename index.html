@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hermes Fleur — On-Prem Media Verification Gateway</title>
+  <meta name="description" content="Air-gap near-dup gateway for enrolled stills after JPEG/messenger recompress. Docker-native. Zero cloud telemetry. Advisory scores for claims and marketplace media." />
+  <meta name="theme-color" content="#0a0c0f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: { 950: '#07080a', 900: '#0a0c0f', 800: '#12151a', 700: '#1a1f27', 600: '#252b35' },
+            ash: { 400: '#8b939e', 300: '#b4bac3', 200: '#d6dae0' },
+            brass: { 500: '#c4a574', 400: '#d4bc91', 600: '#a8895a' },
+            signal: { ok: '#6f9f7a', warn: '#c9a227', bad: '#b85c5c' }
+          },
+          fontFamily: {
+            display: ['Syne', 'system-ui', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'ui-monospace', 'monospace']
+          },
+          boxShadow: {
+            panel: '0 0 0 1px rgba(196,165,116,0.12), 0 24px 80px rgba(0,0,0,0.45)'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      background-color: #0a0c0f;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196,165,116,0.08), transparent 55%),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+    }
+    .scanline::after {
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 3px
+      );
+      opacity: 0.35;
+    }
+    pre, code { font-variant-ligatures: none; }
+    .fade-up { animation: fadeUp 0.7s ease-out both; }
+    .fade-up-d1 { animation-delay: 0.08s; }
+    .fade-up-d2 { animation-delay: 0.16s; }
+    .fade-up-d3 { animation-delay: 0.24s; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up, .fade-up-d1, .fade-up-d2, .fade-up-d3 { animation: none; }
+    }
+  </style>
+</head>
+<body class="text-ash-200 font-mono antialiased selection:bg-brass-500/30 selection:text-ash-200">
+  <div class="min-h-screen">
+    <header class="border-b border-white/5">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 sm:px-8">
+        <a href="#top" class="font-display text-sm font-semibold tracking-[0.18em] text-ash-200 uppercase">
+          Hermes<span class="text-brass-500">Fleur</span>
+        </a>
+        <nav class="hidden gap-6 text-[11px] uppercase tracking-[0.16em] text-ash-400 sm:flex">
+          <a class="hover:text-brass-400 transition-colors" href="#stack">Stack</a>
+          <a class="hover:text-brass-400 transition-colors" href="#security">Security</a>
+          <a class="hover:text-brass-400 transition-colors" href="#api">API</a>
+          <a class="hover:text-brass-400 transition-colors" href="#poc">PoC</a>
+        </nav>
+        <a href="#poc" class="border border-brass-500/40 bg-brass-500/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-brass-400 hover:bg-brass-500/20 transition-colors">
+          Request trial
+        </a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="relative overflow-hidden border-b border-white/5">
+        <div class="scanline absolute inset-0"></div>
+        <div class="relative mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
+          <p class="fade-up font-mono text-[11px] uppercase tracking-[0.22em] text-brass-500">SKU v2.1-near-dup · On-Prem L2</p>
+          <h1 class="fade-up fade-up-d1 mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-ash-200 sm:text-5xl md:text-6xl">
+            Hermes Fleur<br />
+            <span class="text-ash-400">On-Prem Media Verification Gateway</span>
+          </h1>
+          <p class="fade-up fade-up-d2 mt-6 max-w-2xl text-sm leading-relaxed text-ash-400 sm:text-[15px]">
+            Enroll a still. Score the same still after JPEG / messenger recompress or a mild center crop.
+            Built for insurance claim photo packs and marketplace listing media.
+            <span class="text-ash-300">Advisory scores. Human in the loop. Not a fraud oracle. Not Face Soft.</span>
+          </p>
+          <div class="fade-up fade-up-d3 mt-8 flex flex-wrap gap-2">
+            <span class="border border-white/10 bg-ink-800 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-ash-300">Air-Gap Ready</span>
+            <span class="border border-white/10 bg-ink-800 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-ash-300">Zero Cloud Telemetry</span>
+            <span class="border border-white/10 bg-ink-800 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-ash-300">Docker Native</span>
+          </div>
+          <dl class="fade-up fade-up-d3 mt-12 grid max-w-3xl grid-cols-2 gap-4 border-t border-white/5 pt-8 sm:grid-cols-4">
+            <div>
+              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">JPEG q40</dt>
+              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">8/8 Pro</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">Crop ~64%</dt>
+              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">5/8 Pro</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">Listen</dt>
+              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">:8787</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">Soft-lock</dt>
+              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">HTTP 402</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- STACK -->
+      <section id="stack" class="border-b border-white/5">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">01 · Architecture</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">The stack</h2>
+          <p class="mt-3 max-w-xl text-sm text-ash-400">No SaaS hop. One container. Rust does the math; Python only shuttles HTTP.</p>
+          <div class="mt-10 grid gap-4 md:grid-cols-3">
+            <article class="border border-white/10 bg-ink-800/80 p-5 shadow-panel">
+              <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Rust core</p>
+              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">hermes_fleur_cli</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Release binary for <code class="text-brass-400">hybrid-enroll</code> /
+                <code class="text-brass-400">hybrid-verify</code> /
+                <code class="text-brass-400">hybrid-session</code>.
+                L2 grid-tile structural match. License gate + flock quota in-process.
+              </p>
+            </article>
+            <article class="border border-white/10 bg-ink-800/80 p-5 shadow-panel">
+              <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Python gateway</p>
+              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">gateway.py</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Thin <code class="text-brass-400">ThreadingHTTPServer</code> on
+                <code class="text-brass-400">0.0.0.0:8787</code>. Multipart in → subprocess CLI → JSON out.
+                No business logic rewrite in the proxy.
+              </p>
+            </article>
+            <article class="border border-white/10 bg-ink-800/80 p-5 shadow-panel">
+              <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Packaging</p>
+              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">Docker native</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Multi-stage image. Named volume for <code class="text-brass-400">/data</code>
+                (quota flock). License mount ro. Scan with Trivy / Docker Scout like any other artifact.
+              </p>
+            </article>
+          </div>
+          <pre class="mt-8 overflow-x-auto border border-white/10 bg-ink-950 p-4 text-[11px] leading-relaxed text-ash-300"><code>┌────────────┐   multipart   ┌─────────────┐  subprocess  ┌──────────────────┐
+│  Client    │ ────────────► │ gateway.py  │ ───────────► │ hermes_fleur_cli │
+│  (host)    │ ◄──────────── │   :8787     │ ◄─────────── │  Rust binary     │
+└────────────┘     JSON      └─────────────┘              └──────────────────┘
+                                    │
+                              /data (named vol)
+                              license_state.json + .lock</code></pre>
+        </div>
+      </section>
+
+      <!-- SECURITY -->
+      <section id="security" class="border-b border-white/5 bg-ink-950/40">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">02 · Security &amp; compliance</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">For CISO / IT</h2>
+          <ul class="mt-10 space-y-0 divide-y divide-white/5 border border-white/10 bg-ink-800/60">
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Egress</span>
+              <span class="text-sm text-ash-300">Zero product phone-home. Container designed for closed network. Media stays on the customer host.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">License</span>
+              <span class="text-sm text-ash-300">Ed25519 signed license + HMAC quota state. Soft-lock only (<code class="text-brass-400">wipe: false</code>). Exhausted → HTTP <code class="text-brass-400">402</code>.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Atomicity</span>
+              <span class="text-sm text-ash-300">Exclusive flock on <code class="text-brass-400">license_state.json.lock</code>. Mount <code class="text-brass-400">/data</code> as a Docker <strong class="font-medium text-ash-200">named volume</strong> — not a host-file bind of the state JSON.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Lab floor</span>
+              <span class="text-sm text-ash-300">Freeze: JPEG q40 <strong class="font-medium text-ash-200">8/8 Pro</strong>; crop10 (~64% remaining) <strong class="font-medium text-ash-200">5/8 Pro</strong>. Not any crop. Not rotation. Not auto-deny.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- API -->
+      <section id="api" class="border-b border-white/5">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">03 · Integration</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">API contract</h2>
+          <p class="mt-3 max-w-xl text-sm text-ash-400">
+            Real routes: <code class="text-brass-400">/v1/enroll</code>, <code class="text-brass-400">/v1/match</code>,
+            <code class="text-brass-400">/v1/match_session</code>, <code class="text-brass-400">/v1/health</code>.
+          </p>
+          <div class="mt-8 grid gap-6 lg:grid-cols-2">
+            <div>
+              <p class="mb-2 text-[10px] uppercase tracking-[0.16em] text-ash-400">Request</p>
+              <pre class="overflow-x-auto border border-white/10 bg-ink-950 p-4 text-[11px] leading-relaxed text-ash-300"><code>curl -s -X POST http://127.0.0.1:8787/v1/match \
+  -F "id=sku_card_01" \
+  -F "file=@incoming_claim.jpg"</code></pre>
+            </div>
+            <div>
+              <p class="mb-2 text-[10px] uppercase tracking-[0.16em] text-ash-400">Response (shape)</p>
+              <pre class="overflow-x-auto border border-white/10 bg-ink-950 p-4 text-[11px] leading-relaxed text-ash-300"><code>{
+  "integrity_score": 98.54,
+  "verdict": "pro",
+  "path": "v20",
+  "hit_pro": true,
+  "explain": { /* autopsy for operator */ }
+}</code></pre>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-3 text-[11px]">
+            <span class="border border-signal-ok/30 bg-signal-ok/10 px-2.5 py-1 text-signal-ok">pro</span>
+            <span class="border border-signal-warn/30 bg-signal-warn/10 px-2.5 py-1 text-signal-warn">standard</span>
+            <span class="border border-signal-bad/30 bg-signal-bad/10 px-2.5 py-1 text-signal-bad">reject</span>
+            <span class="self-center text-ash-400">← categorical labels for the handler, not an auto payout gate</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section id="poc" class="relative">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
+          <div class="border border-brass-500/25 bg-gradient-to-br from-ink-800 to-ink-950 p-6 shadow-panel sm:p-10">
+            <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">04 · Closed trial</p>
+            <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Request a 10-match PoC</h2>
+            <p class="mt-3 max-w-xl text-sm text-ash-400">
+              Blind Docker pack: image tar + signed trial license (<strong class="font-medium text-ash-300">10 matches / 14 days</strong>) + client.
+              For security / IT evaluation only. No source, no signing secret.
+            </p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a id="poc-mail"
+                 href="mailto:dezignedgar@gmail.com?subject=Hermes%20Fleur%20PoC%2010-match%20trial&body=Company%3A%0ARole%3A%0AUse-case%20(claims%20%2F%20marketplace)%3A%0APreferred%20region%20(US%2FEU)%3A%0A"
+                 class="inline-flex items-center justify-center border border-brass-500 bg-brass-500 px-5 py-3 text-center text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-950 hover:bg-brass-400 transition-colors">
+                Email Igor Haritonof — closed PoC
+              </a>
+              <a href="https://github.com/deSignedgar-alt/edem-network-mesh"
+                 class="inline-flex items-center justify-center border border-white/15 px-5 py-3 text-[12px] uppercase tracking-[0.14em] text-ash-300 hover:border-brass-500/40 hover:text-brass-400 transition-colors">
+                Engineering repo
+              </a>
+            </div>
+            <p class="mt-6 font-mono text-[11px] text-ash-400">
+              Contact:
+              <span class="text-ash-200">Igor Haritonof</span>
+              ·
+              <a class="text-brass-400 hover:text-brass-300" href="mailto:dezignedgar@gmail.com">dezignedgar@gmail.com</a>
+            </p>
+          </div>
+          <p class="mt-8 text-[11px] leading-relaxed text-ash-400">
+            Out of scope: Face Soft / biometrics · open-web reverse image search · auto payout deny · affine / rotation as sold claim.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/5">
+      <div class="mx-auto flex max-w-5xl flex-col gap-2 px-5 py-8 text-[10px] uppercase tracking-[0.14em] text-ash-400 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <span>Hermes Fleur · On-Prem L2 Near-Dup Gateway</span>
+        <span>Air-gap · Soft-lock · Advisory</span>
+      </div>
+    </footer>
+  </div>
+  <script>
+    const POC_EMAIL = 'dezignedgar@gmail.com';
+    (function () {
+      const a = document.getElementById('poc-mail');
+      if (!a) return;
+      a.href = 'mailto:' + POC_EMAIL
+        + '?subject=' + encodeURIComponent('Hermes Fleur PoC 10-match trial')
+        + '&body=' + encodeURIComponent('Company:\nRole:\nUse-case (claims / marketplace):\nPreferred region (US/EU):\n');
+    })();
+  </script>
+</body>
+</html>
