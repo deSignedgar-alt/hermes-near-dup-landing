@@ -30,4 +30,10 @@ python -m http.server 5500
 
 Workflow: [`.github/workflows/deploy-landing.yml`](../.github/workflows/deploy-landing.yml) uploads this folder to Pages on push to `main` (or manual `workflow_dispatch`).
 
-Pitch language matches product passport: near-dup / suite cascade / advisory — not a fraud oracle.
+Pitch language matches product passport: Hermes L2 Suite / Near-Dup / advisory — not a fraud oracle.
+
+## Discovery (B2B supplement)
+
+- SEO meta + `sitemap.xml` + `robots.txt` on the Pages site  
+- Frame the URL as **official product portal** in partner mail (`sdk/v2_suite/poc_suite/PARTNER_OUTREACH.md`)  
+- Optional custom domain: see `DOMAIN.md` (additive; github.io remains valid until CNAME)

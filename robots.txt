@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://designedgar-alt.github.io/hermes-near-dup-landing/sitemap.xml
