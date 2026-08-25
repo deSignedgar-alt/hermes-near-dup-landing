@@ -7,7 +7,10 @@ Static site for GitHub Pages. Audience: CISO / risk / IT / СБ (anti-marketing)
 | `index.html` | Product page — SKU `hermes-l2-suite` (Base / Rotate / Angle) |
 | `trust.html` | IT/CISO trust layer (air-gap, no telemetry, volumes, soft-lock) |
 | `poc-agreement.html` | Lightweight 1000-match / 14-day PoC terms (Print → PDF) |
-| `assets/favicon.svg` | Mark |
+| `assets/favicon.svg` | Mark (SVG) |
+| `favicon.ico` | Root ICO for browser tabs / crawlers |
+| `robots.txt` | `User-agent: *` / `Allow: /` (+ sitemap) |
+| `DOMAIN.md` | Optional custom domain → Pages |
 
 **Contact:** Igor Haritonof · `dezignedgar@gmail.com` (set in `index.html`).
 
