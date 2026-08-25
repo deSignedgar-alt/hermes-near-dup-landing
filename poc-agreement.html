@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Closed PoC evaluation agreement — Hermes Fleur</title>
-  <meta name="description" content="Lightweight template for a 10-match / 14-day closed PoC of Hermes Fleur On-Prem Near-Dup Gateway." />
+  <meta name="description" content="Lightweight template for a 1000-match / 14-day closed PoC of Hermes L2 Suite On-Prem Gateway." />
   <meta name="theme-color" content="#0a0c0f" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,8 +63,9 @@
       </h1>
       <p class="mt-4 text-sm leading-relaxed text-ash-400">
         Lightweight terms for a time- and quota-limited evaluation of
-        <strong class="text-ash-300">Hermes Fleur — On-Prem L2 Near-Dup Gateway (SKU <code class="text-brass-400">v2.1-near-dup</code>)</strong>.
-        Intended to clear IT / legal blockers without a full MSA. Parties should have counsel review before signature.
+        <strong class="text-ash-300">Hermes Fleur — On-Prem L2 Suite Gateway (SKU <code class="text-brass-400">hermes-l2-suite</code>)</strong>
+        with Base → D₄ → Angle cascade. Intended to clear IT / legal blockers without a full MSA.
+        Parties should have counsel review before signature.
       </p>
 
       <dl class="mt-8 grid gap-3 border border-white/10 bg-ink-800/50 p-5 text-sm text-ash-300 sm:grid-cols-2">
@@ -117,7 +118,7 @@
           </p>
           <ul class="mt-2 list-disc space-y-1 pl-5">
             <li><strong class="text-ash-300">14 calendar days</strong> from license start (as encoded in the signed license), or</li>
-            <li><strong class="text-ash-300">10 match / session consumptions</strong> (enroll does not consume), or</li>
+            <li><strong class="text-ash-300">1000 match consumptions</strong> (enroll does not consume; one tick per match), or</li>
             <li>written termination by either party.</li>
           </ul>
           <p class="mt-2">
@@ -131,8 +132,9 @@
           <ul class="mt-2 list-disc space-y-1 pl-5">
             <li>Evaluator runs the Software on Evaluator-controlled infrastructure.</li>
             <li>Evaluator media and scores are processed locally; Vendor product path does not require cloud telemetry or phone-home of images / scores / quota counters.</li>
+            <li>Optional local audit JSONL (if enabled) stays on Evaluator’s named volume; Vendor receives it only if Evaluator voluntarily exports and sends a copy.</li>
             <li>Evaluator shall mount <code class="text-brass-400">/data</code> as a Docker <strong class="text-ash-300">named volume</strong> and shall not bind-mount a host file onto <code class="text-brass-400">license_state.json</code>.</li>
-            <li>Evaluator remains controller of PoC media. Vendor receives only what Evaluator voluntarily sends (e.g. support screenshots).</li>
+            <li>Evaluator remains controller of PoC media. Vendor receives only what Evaluator voluntarily sends (e.g. filled report template, support screenshots).</li>
           </ul>
         </div>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trust &amp; deployment guarantees — Hermes Fleur</title>
-  <meta name="description" content="Air-gap posture, zero product telemetry, local volume control, and soft-lock license behavior for Hermes Fleur On-Prem Near-Dup Gateway." />
+  <meta name="description" content="Air-gap posture, zero product telemetry, local volume control, and soft-lock license behavior for Hermes L2 Suite On-Prem Gateway." />
   <meta name="theme-color" content="#0a0c0f" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,13 +60,14 @@
     </header>
 
     <main class="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
-      <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">Trust layer · IT / CISO</p>
+      <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">Trust layer · IT / CISO / СБ</p>
       <h1 class="mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight text-ash-200 sm:text-5xl">
         Deployment guarantees
       </h1>
       <p class="mt-5 max-w-2xl text-sm leading-relaxed text-ash-400">
-        Short facts for security review of the On-Prem L2 Near-Dup Gateway
-        (<code class="text-brass-400">v2.1-near-dup</code>). Advisory scores only — not a fraud oracle, not Face Soft, not auto-deny.
+        Short facts for security review of the On-Prem L2 Suite Gateway
+        (<code class="text-brass-400">hermes-l2-suite</code> — Base / Rotate / Angle cascade).
+        Advisory scores only — not a fraud oracle, not Face Soft, not auto-deny.
       </p>
 
       <div class="mt-12 grid gap-4 sm:grid-cols-2">
@@ -83,6 +84,7 @@
           <ul class="mt-4 space-y-2 text-sm text-ash-400">
             <li>No phone-home of images, scores, or license counters to the vendor.</li>
             <li>Evaluation pack does not embed cloud analytics SDKs.</li>
+            <li>Optional pilot audit is <strong class="text-ash-200">local JSONL</strong> on the named volume (hashed ids, no images) — partner chooses whether to share a copy.</li>
             <li>Outbound access is a customer network policy choice — not a product dependency.</li>
           </ul>
         </article>
@@ -90,7 +92,7 @@
           <h2 class="font-display text-lg font-semibold text-ash-200">Local volume control</h2>
           <ul class="mt-4 space-y-2 text-sm text-ash-400">
             <li>Quota / license state lives under <code class="text-brass-400">/data</code> inside the container.</li>
-            <li>Mount <code class="text-brass-400">/data</code> as a Docker <strong class="text-ash-200">named volume</strong> (e.g. <code class="text-brass-400">hermes-v21-poc-data</code>).</li>
+            <li>Mount <code class="text-brass-400">/data</code> as a Docker <strong class="text-ash-200">named volume</strong> (e.g. <code class="text-brass-400">hermes-l2-suite-poc-data</code>).</li>
             <li>Do <strong class="text-ash-200">not</strong> bind-mount a host file onto <code class="text-brass-400">license_state.json</code> — flock behavior on file binds is unreliable.</li>
             <li>You retain the volume; wiping the container does not require shipping media back to the vendor.</li>
           </ul>
@@ -101,7 +103,7 @@
             <li>Ed25519-signed trial license + HMAC-protected quota state.</li>
             <li>Exhausted quota → HTTP <code class="text-brass-400">402</code>, <code class="text-brass-400">wipe: false</code> (soft-lock only).</li>
             <li>No product wipe of customer media or vault enrollments on expiry / exhaustion.</li>
-            <li>Default closed trial: <strong class="text-ash-200">10 matches / 14 days</strong> (whichever binds first per signed license).</li>
+            <li>Default closed pilot: <strong class="text-ash-200">1000 matches / 14 days</strong> (whichever binds first per signed license).</li>
           </ul>
         </article>
       </div>
@@ -112,12 +114,14 @@
           <li>No biometrics / Face Soft</li>
           <li>No open-web reverse image search</li>
           <li>No auto payout deny / auto takedown</li>
-          <li>No sold claim for arbitrary crop / rotation / affine</li>
+          <li>No sold claim beyond ±15° / D₄ / JPEG-crop floors</li>
+          <li>No perspective / synthetic-warp fraud oracle</li>
+          <li>No vendor pull of pilot host data</li>
         </ul>
         <p class="mt-6 text-sm text-ash-400">
           For a closed evaluation, use the
           <a class="text-brass-400 hover:text-brass-300" href="poc-agreement.html">lightweight PoC agreement</a>
-          so legal can clear a 14-day / 10-match trial without a full MSA.
+          so legal can clear a 14-day / 1000-match trial without a full MSA.
         </p>
       </section>
 
@@ -132,7 +136,7 @@
     <footer class="border-t border-white/5">
       <div class="mx-auto flex max-w-5xl flex-col gap-2 px-5 py-8 text-[10px] uppercase tracking-[0.14em] text-ash-400 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <a class="hover:text-brass-400" href="index.html">← Product page</a>
-        <span>Air-gap · Soft-lock · Advisory</span>
+        <span>Air-gap · Soft-lock · Advisory · No telemetry</span>
       </div>
     </footer>
   </div>

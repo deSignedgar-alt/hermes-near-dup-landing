@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hermes Fleur — On-Prem Media Verification Gateway</title>
-  <meta name="description" content="Air-gap near-dup gateway for enrolled stills after JPEG/messenger recompress. Docker-native. Zero cloud telemetry. Advisory scores for claims and marketplace media." />
+  <title>Hermes Fleur — On-Prem L2 Suite Gateway</title>
+  <meta name="description" content="On-Prem Hermes L2 Suite: Base / Rotate / Angle cascade for enrolled stills. JPEG, D4, mild ±15° tilt. Docker-native. Zero cloud telemetry. Advisory scores." />
   <meta name="google-site-verification" content="Ta2IwNwB7odQEP5Cegm14qvdXI4TjclTItNUOWpiauY" />
   <meta name="theme-color" content="#0a0c0f" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -79,10 +79,12 @@
           Hermes<span class="text-brass-500">Fleur</span>
         </a>
         <nav class="hidden gap-6 text-[11px] uppercase tracking-[0.16em] text-ash-400 sm:flex">
-          <a class="hover:text-brass-400 transition-colors" href="#stack">Stack</a>
+          <a class="hover:text-brass-400 transition-colors" href="#sdk">SDK</a>
+          <a class="hover:text-brass-400 transition-colors" href="#use">Use cases</a>
+          <a class="hover:text-brass-400 transition-colors" href="#value">Value</a>
+          <a class="hover:text-brass-400 transition-colors" href="#evidence">Evidence</a>
           <a class="hover:text-brass-400 transition-colors" href="#security">Security</a>
           <a class="hover:text-brass-400 transition-colors" href="#api">API</a>
-          <a class="hover:text-brass-400 transition-colors" href="#trust">Trust</a>
           <a class="hover:text-brass-400 transition-colors" href="#poc">PoC</a>
         </nav>
         <a href="#poc" class="border border-brass-500/40 bg-brass-500/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-brass-400 hover:bg-brass-500/20 transition-colors">
@@ -96,19 +98,20 @@
       <section class="relative overflow-hidden border-b border-white/5">
         <div class="scanline absolute inset-0"></div>
         <div class="relative mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-          <p class="fade-up font-mono text-[11px] uppercase tracking-[0.22em] text-brass-500">SKU v2.1-near-dup · On-Prem L2</p>
+          <p class="fade-up font-mono text-[11px] uppercase tracking-[0.22em] text-brass-500">SKU hermes-l2-suite · On-Prem L2</p>
           <h1 class="fade-up fade-up-d1 mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-ash-200 sm:text-5xl md:text-6xl">
             Hermes Fleur<br />
-            <span class="text-ash-400">On-Prem Media Verification Gateway</span>
+            <span class="text-ash-400">On-Prem L2 Suite Gateway</span>
           </h1>
           <p class="fade-up fade-up-d2 mt-6 max-w-2xl text-sm leading-relaxed text-ash-400 sm:text-[15px]">
-            Enroll a still. Score the same still after JPEG / messenger recompress or a mild center crop.
-            Built for insurance claim photo packs and marketplace listing media.
+            One cascade — Base → D₄ → Angle — for the <span class="text-ash-300">same enrolled still</span>
+            after JPEG / messenger recompress, cardinal rotate / flip, or mild in-plane tilt ≤±15°.
             <span class="text-ash-300">Advisory scores. Human in the loop. Not a fraud oracle. Not Face Soft.</span>
           </p>
           <div class="fade-up fade-up-d3 mt-8 flex flex-wrap gap-2">
             <span class="border border-white/10 bg-ink-800 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-ash-300">Air-Gap Ready</span>
             <span class="border border-white/10 bg-ink-800 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-ash-300">Zero Cloud Telemetry</span>
+            <span class="border border-white/10 bg-ink-800 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-ash-300">1 Tick / Match</span>
             <span class="border border-white/10 bg-ink-800 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-ash-300">Docker Native</span>
           </div>
           <dl class="fade-up fade-up-d3 mt-12 grid max-w-3xl grid-cols-2 gap-4 border-t border-white/5 pt-8 sm:grid-cols-4">
@@ -117,100 +120,269 @@
               <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">8/8 Pro</dd>
             </div>
             <div>
-              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">Crop ~64%</dt>
-              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">5/8 Pro</dd>
+              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">rot90 (D₄)</dt>
+              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">8/8 Pro</dd>
             </div>
             <div>
-              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">Listen</dt>
-              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">:8787</dd>
+              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">tilt ±15°</dt>
+              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">8/8 Pro</dd>
             </div>
             <div>
-              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">Soft-lock</dt>
-              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">HTTP 402</dd>
+              <dt class="text-[10px] uppercase tracking-[0.16em] text-ash-400">Hard-alien FPR</dt>
+              <dd class="mt-1 font-display text-2xl font-semibold text-ash-200">0/48</dd>
             </div>
           </dl>
+          <p class="mt-4 text-[10px] uppercase tracking-[0.14em] text-ash-400">Lab N=8 product stills · suite_pass · Red Team hard-alien gate</p>
         </div>
       </section>
 
-      <!-- STACK -->
-      <section id="stack" class="border-b border-white/5">
+      <!-- SDK TIERS -->
+      <section id="sdk" class="border-b border-white/5">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">01 · Architecture</p>
-          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">The stack</h2>
-          <p class="mt-3 max-w-xl text-sm text-ash-400">No SaaS hop. One container. Rust does the math; Python only shuttles HTTP.</p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">01 · SDK</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Unified suite, three tiers</h2>
+          <p class="mt-3 max-w-2xl text-sm text-ash-400">
+            Commercial pack <code class="text-brass-400">hermes-l2-suite</code>: one CLI pipeline
+            (<code class="text-brass-400">hybrid-verify --tier</code>), early-exit on Pro, <strong class="text-ash-300">one license tick</strong> per match.
+            Sibling freezes remain isolated R&amp;D trees (base / rotate / angle).
+          </p>
           <div class="mt-10 grid gap-4 md:grid-cols-3">
             <article class="border border-white/10 bg-ink-800/80 p-5 shadow-panel">
+              <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Tier · base</p>
+              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">v2.1 near-dup</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Same-still after JPEG q40 / messenger recompress and crop cluster best-effort.
+              </p>
+            </article>
+            <article class="border border-white/10 bg-ink-800/80 p-5 shadow-panel">
+              <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Tier · rotate</p>
+              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">v2.2 D₄</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Cardinal rotate <strong class="text-ash-300">90° / 180° / 270°</strong> and
+                <strong class="text-ash-300">horizontal mirror (flip_h)</strong> of the same enrolled still —
+                typical phone / gallery orientation mistakes without a second enroll.
+              </p>
+            </article>
+            <article class="border border-white/10 bg-ink-800/80 p-5 shadow-panel">
+              <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Tier · angle</p>
+              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">v2.3 ±15°</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Mild in-plane tilt grid (0, ±5, ±10, ±15°) + advisory
+                <code class="text-brass-400">geometry_status</code>
+                (green / orange / red). Not a fraud label.
+              </p>
+            </article>
+          </div>
+
+          <h3 class="mt-12 font-display text-xl font-semibold text-ash-200">Sold characteristics</h3>
+          <p class="mt-2 max-w-2xl text-sm text-ash-400">What the suite recovers on the <strong class="text-ash-300">same enrolled still</strong> — beyond plain JPEG/crop.</p>
+          <ul class="mt-6 space-y-0 divide-y divide-white/5 border border-white/10 bg-ink-950/60">
+            <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Recompress</span>
+              <span class="text-sm text-ash-300">JPEG q40 / messenger re-encode of the enrolled photo.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Crop</span>
+              <span class="text-sm text-ash-300">Mild center crop / crop-cluster best-effort (not arbitrary hard crop).</span>
+            </li>
+            <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Rotate</span>
+              <span class="text-sm text-ash-300">Cardinal turns rot90 / rot180 / rot270 — phone landscape vs studio portrait without manual re-upload.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Mirror</span>
+              <span class="text-sm text-ash-300">Horizontal flip (selfie-mirror / export flip) recovered in the D₄ orbit.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Mild tilt</span>
+              <span class="text-sm text-ash-300">In-plane ±15° (handheld document / shelf photo). Beyond that: advisory only, not sold recover.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Quota economy</span>
+              <span class="text-sm text-ash-300">Full cascade costs <strong class="text-ash-200">1 license tick</strong> — no separate bill for rotate then tilt.</span>
+            </li>
+          </ul>
+
+          <div class="mt-8 grid gap-4 md:grid-cols-3">
+            <article class="border border-white/10 bg-ink-950/60 p-5">
               <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Rust core</p>
-              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">hermes_fleur_cli</h3>
-              <p class="mt-3 text-sm leading-relaxed text-ash-400">
-                Release binary for <code class="text-brass-400">hybrid-enroll</code> /
-                <code class="text-brass-400">hybrid-verify</code> /
-                <code class="text-brass-400">hybrid-session</code>.
-                L2 grid-tile structural match. License gate + flock quota in-process.
-              </p>
+              <h3 class="mt-2 font-display text-base font-semibold text-ash-200">hermes_fleur_cli</h3>
+              <p class="mt-2 text-sm text-ash-400">hybrid-enroll / hybrid-verify --tier / hybrid-session. License + flock quota in-process.</p>
             </article>
-            <article class="border border-white/10 bg-ink-800/80 p-5 shadow-panel">
-              <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Python gateway</p>
-              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">gateway.py</h3>
-              <p class="mt-3 text-sm leading-relaxed text-ash-400">
-                Thin <code class="text-brass-400">ThreadingHTTPServer</code> on
-                <code class="text-brass-400">0.0.0.0:8787</code>. Multipart in → subprocess CLI → JSON out.
-                No business logic rewrite in the proxy.
-              </p>
+            <article class="border border-white/10 bg-ink-950/60 p-5">
+              <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Gateway</p>
+              <h3 class="mt-2 font-display text-base font-semibold text-ash-200">gateway.py</h3>
+              <p class="mt-2 text-sm text-ash-400"><code class="text-brass-400">HERMES_TIER=angle</code> default. Multipart → CLI → JSON. Optional local JSONL audit (no outbound).</p>
             </article>
-            <article class="border border-white/10 bg-ink-800/80 p-5 shadow-panel">
+            <article class="border border-white/10 bg-ink-950/60 p-5">
               <p class="text-[10px] uppercase tracking-[0.18em] text-brass-500">Packaging</p>
-              <h3 class="mt-2 font-display text-lg font-semibold text-ash-200">Docker native</h3>
-              <p class="mt-3 text-sm leading-relaxed text-ash-400">
-                Multi-stage image. Named volume for <code class="text-brass-400">/data</code>
-                (quota flock). License mount ro. Scan with Trivy / Docker Scout like any other artifact.
-              </p>
+              <h3 class="mt-2 font-display text-base font-semibold text-ash-200">Docker · hermes-l2-suite-gateway</h3>
+              <p class="mt-2 text-sm text-ash-400">Named volume <code class="text-brass-400">/data</code>. License mount ro. Pilot scenarios A/B/C in the blind pack.</p>
             </article>
           </div>
           <pre class="mt-8 overflow-x-auto border border-white/10 bg-ink-950 p-4 text-[11px] leading-relaxed text-ash-300"><code>┌────────────┐   multipart   ┌─────────────┐  subprocess  ┌──────────────────┐
 │  Client    │ ────────────► │ gateway.py  │ ───────────► │ hermes_fleur_cli │
-│  (host)    │ ◄──────────── │   :8787     │ ◄─────────── │  Rust binary     │
+│  (host)    │ ◄──────────── │   :8787     │ ◄─────────── │  --tier cascade  │
 └────────────┘     JSON      └─────────────┘              └──────────────────┘
                                     │
-                              /data (named vol)
-                              license_state.json + .lock</code></pre>
+                         /data named volume (quota + optional pilot_audit.jsonl)
+                         no phone-home · soft-lock 402 · wipe:false</code></pre>
+        </div>
+      </section>
+
+      <!-- USE CASES -->
+      <section id="use" class="border-b border-white/5 bg-ink-950/40">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">02 · Application</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Where it fits</h2>
+          <p class="mt-3 max-w-2xl text-sm text-ash-400">
+            Same-still structural check inside a closed workflow — before a human spends time on a claim pack or listing dispute.
+            Not open-web search. Not biometrics.
+          </p>
+          <div class="mt-10 grid gap-4 md:grid-cols-2">
+            <article class="border border-white/10 bg-ink-800/70 p-5 shadow-panel">
+              <h3 class="font-display text-lg font-semibold text-ash-200">Insurance / claims photo packs</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Enroll studio or first-notice stills. Score later phone JPEGs, messenger forwards, rotated gallery exports,
+                and mildly tilted handheld shots of <strong class="text-ash-300">that same asset</strong> before adjuster review.
+              </p>
+            </article>
+            <article class="border border-white/10 bg-ink-800/70 p-5 shadow-panel">
+              <h3 class="font-display text-lg font-semibold text-ash-200">Marketplace / listing media</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Tie a listing ID to an enrolled product card or SKU photo. Catch “different still” uploads early;
+                accept orientation flips and recompress without forcing sellers to re-shoot.
+              </p>
+            </article>
+            <article class="border border-white/10 bg-ink-800/70 p-5 shadow-panel">
+              <h3 class="font-display text-lg font-semibold text-ash-200">Intake / back-office QA</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Gate multi-photo sessions: same passport, several probes — advisory consensus for operators,
+                not an automatic deny rule.
+              </p>
+            </article>
+            <article class="border border-white/10 bg-ink-800/70 p-5 shadow-panel">
+              <h3 class="font-display text-lg font-semibold text-ash-200">On-prem / regulated perimeter</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ash-400">
+                Media never needs a vendor cloud hop. Fits СБ / CISO air-gap reviews: soft-lock license,
+                named volume, optional local audit only.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUE -->
+      <section id="value" class="border-b border-white/5">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">03 · Ops leverage</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Time and cost levers</h2>
+          <p class="mt-3 max-w-2xl text-sm text-ash-400">
+            Honest operational gains — not a promised ROI spreadsheet. Pilot measures your own minutes and false-reject rate.
+          </p>
+          <ul class="mt-10 space-y-0 divide-y divide-white/5 border border-white/10 bg-ink-800/60">
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Fewer re-asks</span>
+              <span class="text-sm text-ash-300">Rotated / mirrored / mildly tilted phone photos of the enrolled still no longer force a “please re-upload upright” loop — fewer tickets and callbacks.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Faster triage</span>
+              <span class="text-sm text-ash-300">One REST match returns verdict + tier + orientation + geometry advisory; operators open hard cases first instead of eyeballing every JPEG.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">License economy</span>
+              <span class="text-sm text-ash-300">Base + rotate + angle in <strong class="text-ash-200">one tick</strong> — you do not burn three quotas to recover orientation then tilt.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Infra cost</span>
+              <span class="text-sm text-ash-300">On-prem Docker: no per-image cloud egress / SaaS OCR bill for this check; media stays on your volume (СБ-friendly).</span>
+            </li>
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">False-accept control</span>
+              <span class="text-sm text-ash-300">Lab hard-alien gate <strong class="text-ash-200">0/48</strong> false Pro — fewer “wrong still passed” escalations that cost investigation hours.</span>
+            </li>
+          </ul>
+          <p class="mt-6 text-[11px] leading-relaxed text-ash-400">
+            During the closed pilot, track: minutes to first match, share of rotated/tilted probes that stay Pro without re-shoot,
+            and operator time on alien rejects. Those become your internal savings model — we do not invent a universal %.
+          </p>
+        </div>
+      </section>
+
+      <!-- EVIDENCE -->
+      <section id="evidence" class="border-b border-white/5 bg-ink-950/40">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">04 · Lab evidence</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Test scale (N=8)</h2>
+          <p class="mt-3 max-w-2xl text-sm text-ash-400">
+            Frozen suite matrices on product stills. Partner stills may differ — sold floors, not marketing percentiles.
+          </p>
+          <div class="mt-8 overflow-x-auto border border-white/10">
+            <table class="w-full min-w-[36rem] text-left text-[12px]">
+              <thead class="bg-ink-800 text-[10px] uppercase tracking-[0.14em] text-ash-400">
+                <tr>
+                  <th class="px-4 py-3 font-medium">Probe</th>
+                  <th class="px-4 py-3 font-medium">base</th>
+                  <th class="px-4 py-3 font-medium">rotate</th>
+                  <th class="px-4 py-3 font-medium">angle</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5 text-ash-300">
+                <tr><td class="px-4 py-3">identity / jpeg_q40</td><td class="px-4 py-3 text-signal-ok">100% Pro</td><td class="px-4 py-3 text-signal-ok">100%</td><td class="px-4 py-3 text-signal-ok">100%</td></tr>
+                <tr><td class="px-4 py-3">rot90</td><td class="px-4 py-3 text-ash-400">0% (not sold)</td><td class="px-4 py-3 text-signal-ok">100% Pro</td><td class="px-4 py-3 text-signal-ok">100%</td></tr>
+                <tr><td class="px-4 py-3">ang_p15</td><td class="px-4 py-3 text-ash-400">low</td><td class="px-4 py-3 text-ash-400">low</td><td class="px-4 py-3 text-signal-ok">100% Pro</td></tr>
+                <tr><td class="px-4 py-3">alien not Pro</td><td class="px-4 py-3 text-signal-ok">100%</td><td class="px-4 py-3 text-signal-ok">100%</td><td class="px-4 py-3 text-signal-ok">100%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="mt-8 space-y-0 divide-y divide-white/5 border border-white/10 bg-ink-800/60">
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Red Team</span>
+              <span class="text-sm text-ash-300">Hard-alien false Pro <strong class="text-ash-200">0/48</strong>. Dirty abuse (c25+q20+bw): honest collapse (0% Pro). Thumbnail ladder: 200px robust; 64px shows the floor.</span>
+            </li>
+            <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Not sold</span>
+              <span class="text-sm text-ash-300">Arbitrary angle beyond ±15°, perspective / fisheye recover, synthetic-warp fraud oracle, open-web search, auto-deny payout.</span>
+            </li>
+          </ul>
         </div>
       </section>
 
       <!-- SECURITY -->
-      <section id="security" class="border-b border-white/5 bg-ink-950/40">
+      <section id="security" class="border-b border-white/5">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">02 · Security &amp; compliance</p>
-          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">For CISO / IT</h2>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">05 · Security &amp; compliance</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">For CISO / IT / СБ</h2>
           <ul class="mt-10 space-y-0 divide-y divide-white/5 border border-white/10 bg-ink-800/60">
             <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
               <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Egress</span>
-              <span class="text-sm text-ash-300">Zero product phone-home. Container designed for closed network. Media stays on the customer host.</span>
+              <span class="text-sm text-ash-300">Zero product phone-home. No cloud telemetry of images, scores, or quota. Optional audit is <strong class="text-ash-200">local JSONL on the named volume only</strong>.</span>
             </li>
             <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
               <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">License</span>
-              <span class="text-sm text-ash-300">Ed25519 signed license + HMAC quota state. Soft-lock only (<code class="text-brass-400">wipe: false</code>). Exhausted → HTTP <code class="text-brass-400">402</code>.</span>
+              <span class="text-sm text-ash-300">Ed25519 signed license + HMAC quota state. Soft-lock only (<code class="text-brass-400">wipe: false</code>). Exhausted → HTTP <code class="text-brass-400">402</code>. Default pilot: <strong class="text-ash-200">1000 matches / 14 days</strong>.</span>
             </li>
             <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
               <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Atomicity</span>
-              <span class="text-sm text-ash-300">Exclusive flock on <code class="text-brass-400">license_state.json.lock</code>. Mount <code class="text-brass-400">/data</code> as a Docker <strong class="font-medium text-ash-200">named volume</strong> — not a host-file bind of the state JSON.</span>
+              <span class="text-sm text-ash-300">Exclusive flock on <code class="text-brass-400">license_state.json.lock</code>. Mount <code class="text-brass-400">/data</code> as Docker named volume <code class="text-brass-400">hermes-l2-suite-poc-data</code> — not a host-file bind of the state JSON.</span>
             </li>
             <li class="grid gap-2 px-5 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
-              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Lab floor</span>
-              <span class="text-sm text-ash-300">Freeze: JPEG q40 <strong class="font-medium text-ash-200">8/8 Pro</strong>; crop10 (~64% remaining) <strong class="font-medium text-ash-200">5/8 Pro</strong>. Not any crop. Not rotation. Not auto-deny.</span>
+              <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Feedback</span>
+              <span class="text-sm text-ash-300">Partner returns filled report template (+ optional local audit summary). Vendor does not pull data from the pilot host.</span>
             </li>
           </ul>
         </div>
       </section>
 
       <!-- API -->
-      <section id="api" class="border-b border-white/5">
+      <section id="api" class="border-b border-white/5 bg-ink-950/40">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">03 · Integration</p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">06 · Integration</p>
           <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">API contract</h2>
           <p class="mt-3 max-w-xl text-sm text-ash-400">
-            Real routes: <code class="text-brass-400">/v1/enroll</code>, <code class="text-brass-400">/v1/match</code>,
-            <code class="text-brass-400">/v1/match_session</code>, <code class="text-brass-400">/v1/health</code>.
+            Routes: <code class="text-brass-400">/v1/enroll</code>, <code class="text-brass-400">/v1/match</code>,
+            <code class="text-brass-400">/v1/match_session</code>, <code class="text-brass-400">/v1/health</code>
+            (includes license quota + audit flags).
           </p>
           <div class="mt-8 grid gap-6 lg:grid-cols-2">
             <div>
@@ -222,11 +394,12 @@
             <div>
               <p class="mb-2 text-[10px] uppercase tracking-[0.16em] text-ash-400">Response (shape)</p>
               <pre class="overflow-x-auto border border-white/10 bg-ink-950 p-4 text-[11px] leading-relaxed text-ash-300"><code>{
-  "integrity_score": 98.54,
+  "integrity_score": 99.84,
   "verdict": "pro",
-  "path": "v20",
   "hit_pro": true,
-  "explain": { /* autopsy for operator */ }
+  "verify_tier": "angle",
+  "orientation": "ang_p15",
+  "geometry_status": { "level": "in_band", "code": "ok" }
 }</code></pre>
             </div>
           </div>
@@ -239,23 +412,23 @@
         </div>
       </section>
 
-      <!-- TRUST + PoC TERMS (additive) -->
+      <!-- TRUST + PoC TERMS -->
       <section id="trust" class="relative border-t border-white/5">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">04 · Trust &amp; legal</p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">07 · Trust &amp; legal</p>
           <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Trust + PoC terms</h2>
           <p class="mt-3 max-w-2xl text-sm text-ash-400">
             Short pages for IT and counsel: air-gap / no telemetry / local volumes, plus a lightweight
-            10-match / 14-day evaluation agreement (Print → PDF). Does not replace a production MSA.
+            evaluation agreement (Print → PDF). Does not replace a production MSA.
           </p>
           <div class="mt-8 grid gap-4 sm:grid-cols-2">
             <a href="trust.html" class="block border border-white/10 bg-ink-800/50 p-5 transition-colors hover:border-brass-500/40">
               <h3 class="font-display text-lg font-semibold text-ash-200">Trust layer</h3>
-              <p class="mt-2 text-sm text-ash-400">Deployment guarantees for CISO / IT review.</p>
+              <p class="mt-2 text-sm text-ash-400">Deployment guarantees for CISO / IT / СБ review.</p>
             </a>
             <a href="poc-agreement.html" class="block border border-white/10 bg-ink-800/50 p-5 transition-colors hover:border-brass-500/40">
               <h3 class="font-display text-lg font-semibold text-ash-200">PoC terms</h3>
-              <p class="mt-2 text-sm text-ash-400">Closed evaluation agreement template (10 matches / 14 days).</p>
+              <p class="mt-2 text-sm text-ash-400">Closed evaluation template (1000 matches / 14 days).</p>
             </a>
           </div>
         </div>
@@ -265,15 +438,17 @@
       <section id="poc" class="relative">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
           <div class="border border-brass-500/25 bg-gradient-to-br from-ink-800 to-ink-950 p-6 shadow-panel sm:p-10">
-            <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">05 · Closed trial</p>
-            <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Request a 10-match PoC</h2>
+            <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">08 · Closed pilot</p>
+            <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Request an L2 Suite pilot</h2>
             <p class="mt-3 max-w-xl text-sm text-ash-400">
-              Blind Docker pack: image tar + signed trial license (<strong class="font-medium text-ash-300">10 matches / 14 days</strong>) + client.
-              For security / IT evaluation only. No source, no signing secret.
+              Blind Docker pack: image tar + signed trial
+              (<strong class="font-medium text-ash-300">1000 matches / 14 days</strong>
+              + client + scenario plan (A bundled / B partner stills / C advisory).
+              For security / IT evaluation only. No source, no signing secret, no phone-home.
             </p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a id="poc-mail"
-                 href="mailto:dezignedgar@gmail.com?subject=Hermes%20Fleur%20PoC%2010-match%20trial&body=Company%3A%0ARole%3A%0AUse-case%20(claims%20%2F%20marketplace)%3A%0APreferred%20region%20(US%2FEU)%3A%0A"
+                 href="mailto:dezignedgar@gmail.com?subject=Hermes%20L2%20Suite%20pilot%201000-match&body=Company%3A%0ARole%3A%0AUse-case%20(claims%20%2F%20marketplace)%3A%0APreferred%20region%20(US%2FEU)%3A%0A"
                  class="inline-flex items-center justify-center border border-brass-500 bg-brass-500 px-5 py-3 text-center text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-950 hover:bg-brass-400 transition-colors">
                 Email Igor Haritonof — closed PoC
               </a>
@@ -290,7 +465,8 @@
             </p>
           </div>
           <p class="mt-8 text-[11px] leading-relaxed text-ash-400">
-            Out of scope: Face Soft / biometrics · open-web reverse image search · auto payout deny · affine / rotation as sold claim.
+            Out of scope: Face Soft / biometrics · open-web reverse image search · auto payout deny ·
+            perspective / fisheye / synthetic-warp recover · tilt beyond sold ±15° band.
           </p>
         </div>
       </section>
@@ -298,8 +474,8 @@
 
     <footer class="border-t border-white/5">
       <div class="mx-auto flex max-w-5xl flex-col gap-2 px-5 py-8 text-[10px] uppercase tracking-[0.14em] text-ash-400 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <span>Hermes Fleur · On-Prem L2 Near-Dup Gateway</span>
-        <span>Air-gap · Soft-lock · Advisory</span>
+        <span>Hermes Fleur · hermes-l2-suite · On-Prem L2</span>
+        <span>Air-gap · Soft-lock · Advisory · No telemetry</span>
       </div>
     </footer>
   </div>
@@ -309,7 +485,7 @@
       const a = document.getElementById('poc-mail');
       if (!a) return;
       a.href = 'mailto:' + POC_EMAIL
-        + '?subject=' + encodeURIComponent('Hermes Fleur PoC 10-match trial')
+        + '?subject=' + encodeURIComponent('Hermes L2 Suite pilot 1000-match')
         + '&body=' + encodeURIComponent('Company:\nRole:\nUse-case (claims / marketplace):\nPreferred region (US/EU):\n');
     })();
   </script>
