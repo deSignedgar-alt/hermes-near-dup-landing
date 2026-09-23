@@ -96,11 +96,12 @@
           <a class="hover:text-brass-400 transition-colors" href="#value">Value</a>
           <a class="hover:text-brass-400 transition-colors" href="#evidence">Evidence</a>
           <a class="hover:text-brass-400 transition-colors" href="#security">Security</a>
+          <a class="hover:text-brass-400 transition-colors" href="#try">Try</a>
           <a class="hover:text-brass-400 transition-colors" href="#api">API</a>
           <a class="hover:text-brass-400 transition-colors" href="#poc">PoC</a>
         </nav>
-        <a href="#poc" class="border border-brass-500/40 bg-brass-500/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-brass-400 hover:bg-brass-500/20 transition-colors">
-          Request trial
+        <a href="#try" class="border border-brass-500/40 bg-brass-500/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-brass-400 hover:bg-brass-500/20 transition-colors">
+          Try twin demo
         </a>
       </div>
     </header>
@@ -212,10 +213,54 @@
               <span class="text-sm text-ash-300">In-plane ±15° (handheld document / shelf photo). Beyond that: advisory only, not sold recover.</span>
             </li>
             <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-signal-ok">Color / brightness</span>
+              <span class="text-sm text-ash-300">
+                <strong class="text-ash-200">Often passes:</strong> mild brightness / contrast shifts from phone capture and messenger JPEG recompress
+                (included in the sold <strong class="text-ash-200">JPEG q40</strong> floor).
+              </span>
+            </li>
+            <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6 border-l-2 border-signal-warn/40">
+              <span class="text-[11px] uppercase tracking-[0.14em] text-signal-warn">Not sold</span>
+              <span class="text-sm text-ash-300">
+                Heavy Instagram-style filters, hard recolor, or grayscale + aggressive contrast.
+                Lab red-team “dirty” packs can honestly collapse to <strong class="text-ash-200">0% Pro</strong> — by design.
+                Prove mild photometric reuse on <strong class="text-ash-200">your</strong> claim photos in the PoC; do not buy a blanket “any color change” claim.
+              </span>
+            </li>
+            <li class="grid gap-2 px-5 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
               <span class="text-[11px] uppercase tracking-[0.14em] text-brass-500">Quota economy</span>
               <span class="text-sm text-ash-300">Full cascade costs <strong class="text-ash-200">1 license tick</strong> — no separate bill for rotate then tilt.</span>
             </li>
           </ul>
+
+          <div class="mt-6 overflow-x-auto border border-white/10 bg-ink-950/60">
+            <table class="w-full min-w-[32rem] text-left text-sm">
+              <thead class="border-b border-white/10 text-[10px] uppercase tracking-[0.14em] text-ash-400">
+                <tr>
+                  <th class="px-5 py-3 font-medium">Edit type</th>
+                  <th class="px-5 py-3 font-medium">Status</th>
+                  <th class="px-5 py-3 font-medium">Plain-language note</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5 text-ash-300">
+                <tr>
+                  <td class="px-5 py-3">Phone / messenger JPEG brightness &amp; contrast</td>
+                  <td class="px-5 py-3 text-signal-ok">Often passes</td>
+                  <td class="px-5 py-3 text-ash-400">Sold floor includes heavy JPEG q40 recompress.</td>
+                </tr>
+                <tr>
+                  <td class="px-5 py-3">Crop · rotate 90° · mirror · mild ±15° tilt</td>
+                  <td class="px-5 py-3 text-signal-ok">Sold</td>
+                  <td class="px-5 py-3 text-ash-400">Same enrolled still — structural near-dup recovery.</td>
+                </tr>
+                <tr>
+                  <td class="px-5 py-3">Heavy filter · hard recolor · B&amp;W + harsh contrast</td>
+                  <td class="px-5 py-3 text-signal-warn">Not sold</td>
+                  <td class="px-5 py-3 text-ash-400">Red-team dirty abuse may drop to 0% Pro — honest collapse.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <div class="mt-8 grid gap-4 md:grid-cols-3">
             <article class="border border-white/10 bg-ink-950/60 p-5">
@@ -388,10 +433,69 @@
         </div>
       </section>
 
-      <!-- API -->
-      <section id="api" class="border-b border-white/5 bg-ink-950/40">
+      <!-- TRY DEMO -->
+      <section id="try" class="border-b border-white/5 bg-ink-950/40">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">06 · Integration</p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">06 · Live eval</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Try twin check</h2>
+          <p class="mt-3 max-w-2xl text-sm text-ash-400">
+            Upload a <strong class="font-medium text-ash-300">reference</strong> still and a <strong class="font-medium text-ash-300">probe</strong>.
+            Public demo enrolls + matches once and returns a shortlist verdict — not a custody oracle, not auto-deny.
+            Rate-limited eval host (cold start possible).
+          </p>
+          <ol class="mt-5 max-w-2xl list-decimal space-y-2 pl-5 text-sm text-ash-400">
+            <li>
+              Download samples:
+              <a class="text-brass-400 hover:text-brass-300" href="assets/demo/ref.jpg" download>ref.jpg</a>,
+              <a class="text-brass-400 hover:text-brass-300" href="assets/demo/twin.jpg" download>twin.jpg</a>
+              (expect match band),
+              <a class="text-brass-400 hover:text-brass-300" href="assets/demo/alien.jpg" download>alien.jpg</a>
+              (expect reject / no-match).
+            </li>
+            <li>Or pick any two JPEGs below and run.</li>
+            <li>First click may wait <strong class="font-medium text-ash-300">10–15 seconds</strong> while the eval host wakes — watch the log.</li>
+          </ol>
+
+          <div class="mt-8 grid gap-6 lg:grid-cols-2">
+            <form id="twin-form" class="space-y-4 border border-white/10 bg-ink-900/60 p-5">
+              <label class="block text-[11px] uppercase tracking-[0.14em] text-ash-400">
+                Reference (enroll)
+                <input id="twin-ref" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" required
+                       class="mt-2 block w-full text-sm text-ash-300 file:mr-3 file:border file:border-brass-500/40 file:bg-brass-500/10 file:px-2 file:py-1 file:text-brass-400" />
+              </label>
+              <label class="block text-[11px] uppercase tracking-[0.14em] text-ash-400">
+                Probe (match)
+                <input id="twin-probe" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" required
+                       class="mt-2 block w-full text-sm text-ash-300 file:mr-3 file:border file:border-brass-500/40 file:bg-brass-500/10 file:px-2 file:py-1 file:text-brass-400" />
+              </label>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" id="twin-fill-yes" class="border border-signal-ok/40 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-signal-ok hover:bg-signal-ok/10">Load twin pair</button>
+                <button type="button" id="twin-fill-no" class="border border-signal-bad/40 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-signal-bad hover:bg-signal-bad/10">Load alien pair</button>
+              </div>
+              <button type="submit" id="twin-go"
+                      class="w-full border border-brass-500/50 bg-brass-500/15 px-4 py-3 text-[12px] uppercase tracking-[0.16em] text-brass-400 hover:bg-brass-500/25 disabled:cursor-wait disabled:opacity-55">
+                Run twin check
+              </button>
+            </form>
+
+            <div>
+              <p class="mb-2 text-[10px] uppercase tracking-[0.16em] text-ash-400">Operator log</p>
+              <pre id="twin-log" class="h-48 overflow-y-auto border border-white/10 bg-ink-950 p-4 text-[11px] leading-relaxed text-ash-300" aria-live="polite">[idle] Waiting for Run twin check.
+[hint] On first click the eval host may need 10–15 s to wake. The log will show each step.</pre>
+              <div id="twin-result" class="mt-4 hidden border border-white/10 bg-ink-900/60 p-4">
+                <p class="font-display text-xl font-semibold text-ash-200">Verdict: <span id="twin-verdict">—</span></p>
+                <p class="mt-2 text-sm text-ash-400">Score: <span id="twin-score">—</span> · Tier: <span id="twin-tier">—</span></p>
+                <p id="twin-disc" class="mt-3 text-[11px] text-ash-400"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- API -->
+      <section id="api" class="border-b border-white/5">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">07 · Integration</p>
           <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">API contract</h2>
           <p class="mt-3 max-w-xl text-sm text-ash-400">
             Routes: <code class="text-brass-400">/v1/enroll</code>, <code class="text-brass-400">/v1/match</code>,
@@ -429,7 +533,7 @@
       <!-- TRUST + PoC TERMS -->
       <section id="trust" class="relative border-t border-white/5">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">07 · Trust &amp; legal</p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">08 · Trust &amp; legal</p>
           <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Trust + PoC terms</h2>
           <p class="mt-3 max-w-2xl text-sm text-ash-400">
             Short pages for IT and counsel: air-gap / no telemetry / local volumes, plus a lightweight
@@ -452,7 +556,7 @@
       <section id="poc" class="relative">
         <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
           <div class="border border-brass-500/25 bg-gradient-to-br from-ink-800 to-ink-950 p-6 shadow-panel sm:p-10">
-            <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">08 · Closed pilot</p>
+            <p class="text-[11px] uppercase tracking-[0.22em] text-brass-500">09 · Closed pilot</p>
             <h2 class="mt-3 font-display text-3xl font-semibold text-ash-200">Request an L2 Suite pilot</h2>
             <p class="mt-3 max-w-xl text-sm text-ash-400">
               Blind Docker pack: image tar + signed trial
@@ -494,6 +598,10 @@
     </footer>
   </div>
   <script>
+    // Set after landing_eval proxy + tunnel is up, e.g. Cloudflare quick tunnel.
+    // Leave empty → honest offline message (HF Space is static vitrine, not this API).
+    window.HERMES_EVAL_API = window.HERMES_EVAL_API || "";
+
     const POC_EMAIL = 'dezignedgar@gmail.com';
     (function () {
       const a = document.getElementById('poc-mail');
@@ -501,6 +609,144 @@
       a.href = 'mailto:' + POC_EMAIL
         + '?subject=' + encodeURIComponent('Hermes L2 Suite pilot 1000-match')
         + '&body=' + encodeURIComponent('Company:\nRole:\nUse-case (claims / marketplace):\nPreferred region (US/EU):\n');
+    })();
+
+    (function () {
+      var apiBase = (window.HERMES_EVAL_API || "").replace(/\/$/, "");
+      var form = document.getElementById("twin-form");
+      if (!form) return;
+      var logEl = document.getElementById("twin-log");
+      var goBtn = document.getElementById("twin-go");
+      var resultEl = document.getElementById("twin-result");
+      var verdictEl = document.getElementById("twin-verdict");
+      var scoreEl = document.getElementById("twin-score");
+      var tierEl = document.getElementById("twin-tier");
+      var discEl = document.getElementById("twin-disc");
+      var refInput = document.getElementById("twin-ref");
+      var probeInput = document.getElementById("twin-probe");
+
+      function stamp() {
+        return new Date().toISOString().slice(11, 19);
+      }
+      function log(line) {
+        if (!logEl) return;
+        logEl.textContent += "\n[" + stamp() + "] " + line;
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+      function resetLog(first) {
+        if (!logEl) return;
+        logEl.textContent = first || "[" + stamp() + "] Session start.";
+      }
+
+      async function fillPair(refUrl, probeUrl, label) {
+        log("Loading sample pair: " + label + "…");
+        try {
+          var rr = await fetch(refUrl);
+          var pr = await fetch(probeUrl);
+          if (!rr.ok || !pr.ok) throw new Error("sample fetch failed");
+          var rb = await rr.blob();
+          var pb = await pr.blob();
+          var rFile = new File([rb], "ref.jpg", { type: "image/jpeg" });
+          var pFile = new File([pb], probeUrl.split("/").pop() || "probe.jpg", { type: "image/jpeg" });
+          var rDt = new DataTransfer();
+          rDt.items.add(rFile);
+          refInput.files = rDt.files;
+          var pDt = new DataTransfer();
+          pDt.items.add(pFile);
+          probeInput.files = pDt.files;
+          log("Samples loaded into the form. Click Run twin check.");
+        } catch (e) {
+          log("Could not load samples: " + (e && e.message ? e.message : e));
+        }
+      }
+
+      var fillYes = document.getElementById("twin-fill-yes");
+      var fillNo = document.getElementById("twin-fill-no");
+      if (fillYes) fillYes.addEventListener("click", function () {
+        fillPair("assets/demo/ref.jpg", "assets/demo/twin.jpg", "ref + twin (expect match band)");
+      });
+      if (fillNo) fillNo.addEventListener("click", function () {
+        fillPair("assets/demo/ref.jpg", "assets/demo/alien.jpg", "ref + alien (expect reject)");
+      });
+
+      form.addEventListener("submit", async function (ev) {
+        ev.preventDefault();
+        resultEl.classList.add("hidden");
+        resetLog("[" + stamp() + "] Run twin check requested.");
+
+        if (!apiBase) {
+          log("Eval API offline — set window.HERMES_EVAL_API to the landing_eval proxy URL.");
+          log("Hint: start Docker gateway :8787 + landing_eval :8790 + cloudflared tunnel.");
+          return;
+        }
+
+        var ref = refInput.files && refInput.files[0];
+        var probe = probeInput.files && probeInput.files[0];
+        if (!ref || !probe) {
+          log("Choose both reference and probe images.");
+          return;
+        }
+
+        goBtn.disabled = true;
+        log("Connecting to eval host…");
+        log("First request may take 10–15 seconds while the server wakes up. Please wait.");
+
+        try {
+          log("GET /health (wake / readiness)…");
+          var healthCtrl = new AbortController();
+          var healthTimer = setTimeout(function () { healthCtrl.abort(); }, 45000);
+          var healthRes = await fetch(apiBase + "/health", { signal: healthCtrl.signal });
+          clearTimeout(healthTimer);
+          var health = await healthRes.json().catch(function () { return {}; });
+          if (!healthRes.ok || !health.ok) {
+            log("Host responded but gateway not ready yet — retrying twin call anyway (cold start).");
+          } else {
+            log("Host awake. Gateway health OK.");
+          }
+
+          log("POST /v1/demo/twin (enroll reference + match probe)…");
+          var fd = new FormData();
+          fd.append("reference", ref, ref.name);
+          fd.append("probe", probe, probe.name);
+          fd.append("claim_id", "landing_demo");
+          var twinCtrl = new AbortController();
+          var twinTimer = setTimeout(function () { twinCtrl.abort(); }, 120000);
+          var res = await fetch(apiBase + "/v1/demo/twin", {
+            method: "POST",
+            body: fd,
+            signal: twinCtrl.signal
+          });
+          clearTimeout(twinTimer);
+          var data = await res.json().catch(function () { return {}; });
+          if (!res.ok) {
+            var detail = (data && (data.detail || data.error)) || ("HTTP " + res.status);
+            log("Error: " + detail);
+            if (res.status === 503 || res.status === 502) {
+              log("Tip: wait 10–15 s and click Run again — cold start often needs one retry.");
+            }
+            return;
+          }
+
+          var verdict = data.verdict || data.session_verdict || "?";
+          var score = (data.integrity_score != null) ? data.integrity_score : "—";
+          var tier = data.verify_tier || "—";
+          log("Done in " + (data.elapsed_ms != null ? data.elapsed_ms + " ms" : "?") +
+              ". Verdict=" + verdict + " score=" + score + " tier=" + tier +
+              " (" + ((data.rate && data.rate.used) || "?") + "/" + ((data.rate && data.rate.limit) || "?") + " today).");
+          verdictEl.textContent = String(verdict);
+          scoreEl.textContent = String(score);
+          tierEl.textContent = String(tier);
+          discEl.textContent = data.disclaimer || "";
+          resultEl.classList.remove("hidden");
+        } catch (err) {
+          var msg = (err && err.name === "AbortError")
+            ? "Timed out waiting for eval host (cold start). Wait 10–15 s and retry."
+            : ("Network error — is the eval tunnel up? " + (err && err.message ? err.message : err));
+          log(msg);
+        } finally {
+          goBtn.disabled = false;
+        }
+      });
     })();
   </script>
 </body>
