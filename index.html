@@ -452,22 +452,28 @@
               <a class="text-brass-400 hover:text-brass-300" href="assets/demo/alien.jpg" download>alien.jpg</a>
               (expect reject / no-match).
             </li>
-            <li>Or pick any two JPEGs below and run.</li>
+            <li>Or pick any two JPEG or PNG files below and run.</li>
             <li>First click may wait <strong class="font-medium text-ash-300">10–15 seconds</strong> while the eval host wakes — watch the log.</li>
           </ol>
 
           <div class="mt-8 grid gap-6 lg:grid-cols-2">
             <form id="twin-form" class="space-y-4 border border-white/10 bg-ink-900/60 p-5">
-              <label class="block text-[11px] uppercase tracking-[0.14em] text-ash-400">
-                Reference (enroll)
-                <input id="twin-ref" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" required
-                       class="mt-2 block w-full text-sm text-ash-300 file:mr-3 file:border file:border-brass-500/40 file:bg-brass-500/10 file:px-2 file:py-1 file:text-brass-400" />
-              </label>
-              <label class="block text-[11px] uppercase tracking-[0.14em] text-ash-400">
-                Probe (match)
-                <input id="twin-probe" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" required
-                       class="mt-2 block w-full text-sm text-ash-300 file:mr-3 file:border file:border-brass-500/40 file:bg-brass-500/10 file:px-2 file:py-1 file:text-brass-400" />
-              </label>
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.14em] text-ash-400">Reference (enroll)</p>
+                <div class="mt-2 flex flex-wrap items-center gap-3">
+                  <button type="button" id="twin-ref-btn" class="border border-brass-500/40 bg-brass-500/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-brass-400 hover:bg-brass-500/20">Choose file</button>
+                  <span id="twin-ref-name" class="max-w-full truncate text-sm text-ash-300">No file chosen</span>
+                  <input id="twin-ref" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" class="sr-only" />
+                </div>
+              </div>
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.14em] text-ash-400">Probe (match)</p>
+                <div class="mt-2 flex flex-wrap items-center gap-3">
+                  <button type="button" id="twin-probe-btn" class="border border-brass-500/40 bg-brass-500/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-brass-400 hover:bg-brass-500/20">Choose file</button>
+                  <span id="twin-probe-name" class="max-w-full truncate text-sm text-ash-300">No file chosen</span>
+                  <input id="twin-probe" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" class="sr-only" />
+                </div>
+              </div>
               <div class="flex flex-wrap gap-2">
                 <button type="button" id="twin-fill-yes" class="border border-signal-ok/40 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-signal-ok hover:bg-signal-ok/10">Load twin pair</button>
                 <button type="button" id="twin-fill-no" class="border border-signal-bad/40 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-signal-bad hover:bg-signal-bad/10">Load alien pair</button>
@@ -484,7 +490,8 @@
 [hint] On first click the eval host may need 10–15 s to wake. The log will show each step.</pre>
               <div id="twin-result" class="mt-4 hidden border border-white/10 bg-ink-900/60 p-4">
                 <p class="font-display text-xl font-semibold text-ash-200">Verdict: <span id="twin-verdict">—</span></p>
-                <p class="mt-2 text-sm text-ash-400">Score: <span id="twin-score">—</span> · Tier: <span id="twin-tier">—</span></p>
+                <p id="twin-tier" class="mt-2 text-sm text-ash-200">—</p>
+                <p class="mt-1 text-sm text-ash-400">Score: <span id="twin-score">—</span></p>
                 <p id="twin-disc" class="mt-3 text-[11px] text-ash-400"></p>
               </div>
             </div>
@@ -623,6 +630,33 @@
       var discEl = document.getElementById("twin-disc");
       var refInput = document.getElementById("twin-ref");
       var probeInput = document.getElementById("twin-probe");
+      var refName = document.getElementById("twin-ref-name");
+      var probeName = document.getElementById("twin-probe-name");
+      var refBtn = document.getElementById("twin-ref-btn");
+      var probeBtn = document.getElementById("twin-probe-btn");
+
+      var VERDICT_TEXT = {
+        pro: "Match",
+        standard: "Possible match",
+        reject: "No match"
+      };
+      var TIER_TEXT = {
+        base: "Recompress check. Same photo after a JPEG or messenger save, or a light crop.",
+        rotate: "Turn check. Same photo, including a 90°, 180°, or 270° turn, or a mirror flip.",
+        angle: "Full check. Same photo after a JPEG save, a turn, a mirror, or a tilt of up to 15°."
+      };
+
+      function fileLabel(input) {
+        var f = input && input.files && input.files[0];
+        return f ? f.name : "No file chosen";
+      }
+      function bindPicker(btn, input, nameEl) {
+        if (!btn || !input || !nameEl) return;
+        btn.addEventListener("click", function () { input.click(); });
+        input.addEventListener("change", function () { nameEl.textContent = fileLabel(input); });
+      }
+      bindPicker(refBtn, refInput, refName);
+      bindPicker(probeBtn, probeInput, probeName);
 
       function stamp() {
         return new Date().toISOString().slice(11, 19);
@@ -653,6 +687,8 @@
           var pDt = new DataTransfer();
           pDt.items.add(pFile);
           probeInput.files = pDt.files;
+          if (refName) refName.textContent = fileLabel(refInput);
+          if (probeName) probeName.textContent = fileLabel(probeInput);
           log("Samples loaded into the form. Click Run twin check.");
         } catch (e) {
           log("Could not load samples: " + (e && e.message ? e.message : e));
@@ -727,14 +763,17 @@
           }
 
           var verdict = data.verdict || data.session_verdict || "?";
+          var verdictText = VERDICT_TEXT[verdict] || String(verdict);
           var score = (data.integrity_score != null) ? data.integrity_score : "—";
-          var tier = data.verify_tier || "—";
+          var tier = data.verify_tier || "";
+          var tierText = TIER_TEXT[tier] || (tier ? ("Check level: " + tier) : "—");
           log("Done in " + (data.elapsed_ms != null ? data.elapsed_ms + " ms" : "?") +
-              ". Verdict=" + verdict + " score=" + score + " tier=" + tier +
+              ". Verdict=" + verdictText + " score=" + score +
               " (" + ((data.rate && data.rate.used) || "?") + "/" + ((data.rate && data.rate.limit) || "?") + " today).");
-          verdictEl.textContent = String(verdict);
+          log(tierText);
+          verdictEl.textContent = verdictText;
           scoreEl.textContent = String(score);
-          tierEl.textContent = String(tier);
+          tierEl.textContent = tierText;
           discEl.textContent = data.disclaimer || "";
           resultEl.classList.remove("hidden");
         } catch (err) {
