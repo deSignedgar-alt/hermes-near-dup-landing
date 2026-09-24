@@ -598,9 +598,8 @@
     </footer>
   </div>
   <script>
-    // Set after landing_eval proxy + tunnel is up, e.g. Cloudflare quick tunnel.
-    // Leave empty → honest offline message (HF Space is static vitrine, not this API).
-    window.HERMES_EVAL_API = window.HERMES_EVAL_API || "";
+    // Cloudflare quick tunnel → local landing_eval proxy (:8790) → Docker gateway (:8788).
+    window.HERMES_EVAL_API = "https://convenient-vocabulary-nutten-hugh.trycloudflare.com";
 
     const POC_EMAIL = 'dezignedgar@gmail.com';
     (function () {
